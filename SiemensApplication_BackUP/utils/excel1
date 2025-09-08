@@ -1,0 +1,27 @@
+// SiemensApplication/utils/excel.js
+import path from 'path';
+import XLSX from 'xlsx';               // 👈 change this line
+
+function pickStartWorkflowSheet(wb) {
+  return wb.SheetNames.find(n => n.toLowerCase() === 'startworkflow') ?? wb.SheetNames[0];
+}
+
+export function getStartWorkflowMap(xlsxPath) {
+  const abs = path.isAbsolute(xlsxPath) ? xlsxPath : path.resolve(xlsxPath);
+  const wb = XLSX.readFile(abs, { cellDates: true });   // now works
+  const ws = wb.Sheets[pickStartWorkflowSheet(wb)];
+  if (!ws) throw new Error(`StartWorkflow sheet not found in "${abs}"`);
+  const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+
+  let start = 0;
+  if (rows.length && String(rows[0][0]).toLowerCase() === 'field') start = 1;
+
+  const map = {};
+  for (let i = start; i < rows.length; i++) {
+    const key = String(rows[i][0] ?? '').trim();
+    const val = rows[i][1];
+    if (!key) continue;
+    map[key] = val;
+  }
+  return map;
+}

@@ -1,0 +1,8 @@
+// Keep this file out of Git!
+export const USER_EMAIL    = 'vineeti_hemdani@bluerose-tech.com';
+export const USER_PASSWORD = 'Vani@44112011';
+export const TOTP_SECRET   = 'MNAEAQDLMV2USSTDJFCWYTZTEUWDKMKW';
+
+// Use the FULL login URL (no "...")
+export const LOGIN_URL =
+  'https://siemens-dev1.pegacloud.com/prweb/PRAuth/app/GWSS/WufOMs17lxZjy1fI-RH7kXW6DtwPXjuN*/!STANDARD?pzuiactionrrr=CXtpbn1yblhJcEYzRHZaSUFPUGUvcE5ZV2xqTS9rSHJKSTQreE9CL1Zaa3FPZDI2MFZ6dUY2MzVJek5OdklKYWZ4S3hXc082OHRHVVg3VGZmRE8rYnkxM2xvZz09*';
